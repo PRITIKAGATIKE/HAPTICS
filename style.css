@@ -1,0 +1,66 @@
+body{
+    margin:0;
+    overflow:hidden;
+    touch-action:none;
+}
+
+#bg{
+    position:fixed;
+    width:100vw;
+    height:100vh;
+    object-fit:cover;
+}
+
+.string{
+    position:absolute;
+    left:0;
+    width:100vw;
+    height:100px;
+}
+
+.string path{
+    fill:none;
+    stroke:#805B5B;
+}
+
+.s1{
+    top:15%;
+}
+.s1 path{
+    stroke-width:8;
+}
+
+.s2{
+    top:25%;
+}
+.s2 path{
+    stroke-width:6;
+}
+
+.s3{
+    top:35%;
+}
+.s3 path{
+    stroke-width:5;
+}
+
+.s4{
+    top:45%;
+}
+.s4 path{
+    stroke-width:4;
+}
+
+.s5{
+    top:55%;
+}
+.s5 path{
+    stroke-width:3;
+}
+
+.s6{
+    top:65%;
+}
+.s6 path{
+    stroke-width:2;
+}
