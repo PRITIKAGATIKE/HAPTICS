@@ -1,30 +1,186 @@
-body{
-    margin:0;
-    overflow:hidden;
-    touch-action:none;}
+* {
+  box-sizing: border-box;
+}
 
-#bg{
+body {
+  margin: 0;
+  background: #ededed;
+  font-family: Arial, sans-serif;
+  color: #111;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 28px 16px 95px;
+  background: white;
+  overflow-x: hidden;
+}
+
+.header {
+  padding: 28px 0 24px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.intro {
+    width: 100%;
+    height: 170px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.intro img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:10px;
+}
+
+.dots span{
+    width:8px;
+    height:8px;
+    background:#d0d0d0;
+    border-radius:50%;
+}
+
+.dots .active{
+    background:#444;
+}
+
+.section {
+  margin-top: 24px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.section-heading button {
+  width: 23px;
+  height: 23px;
+  border: 0;
+  border-radius: 50%;
+  background: #ededed;
+  cursor: pointer;
+}
+
+.instrument-list,
+.practice-list {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.instrument-list::-webkit-scrollbar,
+.practice-list::-webkit-scrollbar {
+  display: none;
+}
+
+.instrument-card {
+  min-width: 72px;
+  text-align: center;
+}
+
+.instrument-card img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.instrument-card p {
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+
+.practice-card {
+  min-width: 190px;
+}
+
+.practice-card img {
+  width: 190px;
+  height: 135px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.practice-card small {
+  display: block;
+  margin-top: 9px;
+  color: #888;
+}
+
+.practice-card h3 {
+  margin: 4px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.bottom-nav{
     position:fixed;
-    width:100vw;
-    height:100vh;
-    object-fit:cover;}
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
 
-.string{
-    position:absolute;
-    left:0;
-    right:0;
-    width:100vw;
-    height:40px;}
-.string path{fill:none;stroke:#805B5B;}
-.s1{top:15%;}
-.s1 path{stroke-width:8;}
-.s2{top:25%;}
-.s2 path{stroke-width:6;}
-.s3{top:35%;}
-.s3 path{stroke-width:5;}
-.s4{top:45%;}
-.s4 path{stroke-width:4;}
-.s5{top:55%;}
-.s5 path{stroke-width:3;}
-.s6{top:65%;}
-.s6 path{stroke-width:2;}
+    width:100%;
+    max-width:390px;
+    height:70px;
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+    background:white;
+    border-top:1px solid #ddd;
+}
+
+.nav-btn{
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+}
+
+.nav-btn img{
+    width:28px;
+    height:28px;
+    object-fit:contain;
+}
+/* Guitar Page */
+.guitar-image{
+    width:300px;
+    display:block;
+    margin:10px auto;
+}

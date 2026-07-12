@@ -1,17 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport"  charset="UTF-8" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VadyaGita</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<img id="bg" src="assets/BG.png">
-<svg class="string s1" viewBox="0 0 1000 100" preserveAspectRatio="none"> <path id="string1" d="M0 50 Q500 50 1000 50"/></svg>
-<svg class="string s2" viewBox="0 0 1000 100" preserveAspectRatio="none"> <path id="string2" d="M0 50 Q500 50 1000 50"/></svg>
-<svg class="string s3" viewBox="0 0 1000 100" preserveAspectRatio="none"><path id="string3" d="M0 50 Q500 50 1000 50"/></svg>
-<svg class="string s4" viewBox="0 0 1000 100" preserveAspectRatio="none"> <path id="string4" d="M0 50 Q500 50 1000 50"/> </svg>
-<svg class="string s5" viewBox="0 0 1000 100" preserveAspectRatio="none"> <path id="string5" d="M0 50 Q500 50 1000 50"/></svg>
-<svg class="string s6" viewBox="0 0 1000 100" preserveAspectRatio="none"> <path id="string6" d="M0 50 Q500 50 1000 50"/></svg>
-<script src="script.js"></script>
-</body>
+  <main class="app">
+
+    <header class="header">
+      <h1>Welcome</h1>
+    </header>
+
+    <section class="intro">
+      <img src="images/Banner.png" alt="VadyaGita banner">
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Instrument Simulations</h2>
+        <button type="button">›</button>
+      </div>
+
+<div class="instrument-list">
+
+  <a href="guitar.html" class="instrument-card">
+    <img src="images/Guitar.png" alt="Guitar">
+    <p>Guitar</p>
+  </a>
+
+  <a href="Piano.html" class="instrument-card">
+          <img src="images/Piano.png" alt="Piano">
+          <p>Piano</p>
+        </a>
+
+  <a href="Sitara.html" class="instrument-card">
+          <img src="images/Sitara.png" alt="Sitar">
+          <p>Sitar</p>
+        </a>
+
+  <a href="Violin.html" class="instrument-card">
+          <img src="images/Violin.png" alt="Violin">
+          <p>Violin</p>
+        </a>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>Practice</h2>
+        <button type="button">›</button>
+      </div>
+
+      <div class="practice-list">
+
+        <article class="practice-card">
+          <img src="images/Chords.png" alt="Guitar chords">
+          <small>Guitar</small>
+          <h3>Chords</h3>
+        </article>
+
+        <article class="practice-card">
+          <img src="images/FingerStyle.png" alt="Fingerstyle">
+          <small>Guitar</small>
+          <h3>Fingerstyle</h3>
+        </article>
+
+        <article class="practice-card">
+          <img src="images/PianoChords.png" alt="Piano chords">
+          <small>Piano</small>
+          <h3>Chords</h3>
+        </article>
+
+      </div>
+    </section>
+
+    <nav class="bottom-nav">
+
+  <a href="Home.html" class="nav-btn">
+        <img src="images/house.png">
+    </a>
+
+  <a href="Live Correction.html" class="nav-btn">
+        <img src="images/Live.png">
+  </a>
+
+  <a href="Synesthesia Art Gallery.html" class="nav-btn">
+        <img src="images/Art.png">
+  </a>
+
+  <a href="Notification.html" class="nav-btn">
+        <img src="images/bell.png">
+  </a>
+
+  <a href="User.html" class="nav-btn">
+        <img src="images/user.png">
+  </a>
+
+    </nav>
+
+  </main>
+  <script src="script.js"></script>
+  </body>
 </html>
