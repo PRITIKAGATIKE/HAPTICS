@@ -1,42 +1,69 @@
-console.log("Script loaded");
+console.log("Script Loaded");
 
-// AUDIO FILES
 const sounds = {
-    string1: new Audio("E.mp3"),
-    string2: new Audio("B.mp3"),
-    string3: new Audio("G.mp3"),
-    string4: new Audio("D.mp3"),
-    string5: new Audio("A.mp3"),
-    string6: new Audio("e(high).mp3")
+    string1: new Audio("assets/E.mp3"),
+    string2: new Audio("assets/B.mp3"),
+    string3: new Audio("assets/G.mp3"),
+    string4: new Audio("assets/D.mp3"),
+    string5: new Audio("assets/A.mp3"),
+    string6: new Audio("assets/e(high).mp3")
 };
 
-// VIBRATION
+let fingerDown = false;
+
+document.addEventListener("pointerdown", () => {
+    fingerDown = true;
+});
+
+document.addEventListener("pointerup", () => {
+    fingerDown = false;
+});
+
 function vibratePhone(duration) {
-    if ("vibrate" in navigator) {
+    if (navigator.vibrate) {
         navigator.vibrate(duration);
     }
 }
 
-// STRING ANIMATION
+function playSound(id, duration) {
+
+    const audio = sounds[id];
+
+    if (!audio) return;
+
+    audio.pause();
+    audio.currentTime = 0;
+
+    audio.play().catch(err => {
+        console.log("Audio Error:", err);
+    });
+
+    setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0;
+    }, duration);
+}
+
 function animateString(path, strength) {
 
-    let start = Date.now();
+    let frame = 0;
 
     const animation = setInterval(() => {
 
-        let t = (Date.now() - start) / 100;
+        frame += 0.35;
 
-        let offset =
-            Math.sin(t * 8) *
+        const y =
+            50 +
+            Math.sin(frame * 4) *
             strength *
-            Math.exp(-t / 2);
+            Math.exp(-frame / 3);
 
         path.setAttribute(
             "d",
-            `M0 50 Q500 ${50 + offset} 1000 50`
+            `M0 50 Q500 ${y} 1000 50`
         );
 
-        if (t > 2) {
+        if (frame > 10) {
 
             clearInterval(animation);
 
@@ -49,31 +76,6 @@ function animateString(path, strength) {
     }, 16);
 }
 
-// PLAY AUDIO
-function playSound(audio, duration) {
-
-    audio.pause();
-    audio.currentTime = 0;
-
-    audio.play();
-
-    setTimeout(() => {
-        audio.pause();
-        audio.currentTime = 0;
-    }, duration);
-}
-
-let fingerDown = false;
-
-document.addEventListener("pointerdown", () => {
-    fingerDown = true;
-});
-
-document.addEventListener("pointerup", () => {
-    fingerDown = false;
-});
-
-// CONNECT STRINGS
 for (let i = 1; i <= 6; i++) {
 
     const path = document.getElementById(`string${i}`);
@@ -90,10 +92,7 @@ for (let i = 1; i <= 6; i++) {
 
         animateString(path, strength);
 
-        playSound(
-            sounds[`string${i}`],
-            2000
-        );
+        playSound(`string${i}`, 2000);
 
         vibratePhone(2000);
     });
@@ -105,10 +104,7 @@ for (let i = 1; i <= 6; i++) {
 
         animateString(path, strength);
 
-        playSound(
-            sounds[`string${i}`],
-            5000
-        );
+        playSound(`string${i}`, 5000);
 
         vibratePhone(5000);
     });
