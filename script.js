@@ -28,7 +28,7 @@ setTimeout(() => {audio.pause();
 
 function movingstring(path, strength) { let frame = 0;
     const animation = setInterval(() => {frame += 0.3;const y =50+Math.sin(frame*4)*Math.sin(frame*4)*strength*Math.exp(-frame / 3);
-    path.setAttribute("d",:M0 50 Q500 ${y} 1000 50");
+    path.setAttribute("d",:'M0 50 Q500 ${y} 1000 50');
 
         if (frame > 10) {
     clearInterval(animation);
