@@ -26,10 +26,12 @@ setTimeout(() => {audio.pause();
     }, duration);
 }
 
-function movingstring(path, strength) { let frame = 0;
-    const animation = setInterval(() => {frame += 0.3;const y =50+Math.sin(frame*4)*Math.sin(frame*4)*strength*Math.exp(-frame / 3);
-    path.setAttribute("d",`M0 50 Q500 ${y} 1000 50`);
-
+function movingstring(path, strength) {
+    console.log("moving");
+    path.setAttribute("d", "M0 50 Q500 0 1000 50");
+    setTimeout(() => {
+    path.setAttribute("d", "M0 50 Q500 50 1000 50");}, 500);
+}
         if (frame > 10) {
     clearInterval(animation);
     path.setAttribute( "d","M0 50 Q500 50 1000 50"); }}, 16);
