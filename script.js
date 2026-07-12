@@ -1,11 +1,4 @@
-const strings = [
-    "string1",
-    "string2",
-    "string3",
-    "string4",
-    "string5",
-    "string6"
-];
+console.log("Script loaded");
 
 // AUDIO FILES
 const sounds = {
@@ -17,76 +10,33 @@ const sounds = {
     string6: new Audio("e(high).mp3")
 };
 
-// TRACK FINGER PRESS
-let fingerDown = false;
-
-document.addEventListener("pointerdown", () => {
-    fingerDown = true;
-});
-
-document.addEventListener("pointerup", () => {
-    fingerDown = false;
-});
-
-// PLAY 2 SECONDS
-function playFor2Seconds(audio) {
-
-    audio.pause();
-    audio.currentTime = 0;
-
-    audio.play();
-
-    setTimeout(() => {
-        audio.pause();
-        audio.currentTime = 0;
-    }, 2000);
-}
-
-// PLAY 5 SECONDS
-function playFor5Seconds(audio) {
-
-    audio.pause();
-    audio.currentTime = 0;
-
-    audio.play();
-
-    setTimeout(() => {
-        audio.pause();
-        audio.currentTime = 0;
-    }, 5000);
-}
-
-// PHONE VIBRATION
-function phoneVibrate(ms) {
-
-    if (navigator.vibrate) {
-        navigator.vibrate(ms);
+// VIBRATION
+function vibratePhone(duration) {
+    if ("vibrate" in navigator) {
+        navigator.vibrate(duration);
     }
 }
 
 // STRING ANIMATION
-function vibrateString(id, strength) {
+function animateString(path, strength) {
 
-    const path = document.getElementById(id);
-
-    let frame = 0;
+    let start = Date.now();
 
     const animation = setInterval(() => {
 
-        frame += 0.35;
+        let t = (Date.now() - start) / 100;
 
-        const y =
-            50 +
-            Math.sin(frame * 4) *
+        let offset =
+            Math.sin(t * 8) *
             strength *
-            Math.exp(-frame / 3);
+            Math.exp(-t / 2);
 
         path.setAttribute(
             "d",
-            `M0 50 Q500 ${y} 1000 50`
+            `M0 50 Q500 ${50 + offset} 1000 50`
         );
 
-        if (frame > 10) {
+        if (t > 2) {
 
             clearInterval(animation);
 
@@ -99,21 +49,53 @@ function vibrateString(id, strength) {
     }, 16);
 }
 
-// SETUP STRINGS
-strings.forEach((id, index) => {
+// PLAY AUDIO
+function playSound(audio, duration) {
 
-    const path = document.getElementById(id);
+    audio.pause();
+    audio.currentTime = 0;
 
-    const strength = 30 - index * 4;
+    audio.play();
+
+    setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0;
+    }, duration);
+}
+
+let fingerDown = false;
+
+document.addEventListener("pointerdown", () => {
+    fingerDown = true;
+});
+
+document.addEventListener("pointerup", () => {
+    fingerDown = false;
+});
+
+// CONNECT STRINGS
+for (let i = 1; i <= 6; i++) {
+
+    const path = document.getElementById(`string${i}`);
+
+    if (!path) {
+        console.error(`string${i} not found`);
+        continue;
+    }
+
+    const strength = 35 - (i * 4);
 
     // TAP
     path.addEventListener("pointerdown", () => {
 
-        vibrateString(id, strength);
+        animateString(path, strength);
 
-        phoneVibrate(2000);
+        playSound(
+            sounds[`string${i}`],
+            2000
+        );
 
-        playFor2Seconds(sounds[id]);
+        vibratePhone(2000);
     });
 
     // SWIPE
@@ -121,11 +103,13 @@ strings.forEach((id, index) => {
 
         if (!fingerDown) return;
 
-        vibrateString(id, strength);
+        animateString(path, strength);
 
-        phoneVibrate(5000);
+        playSound(
+            sounds[`string${i}`],
+            5000
+        );
 
-        playFor5Seconds(sounds[id]);
+        vibratePhone(5000);
     });
-
-});
+}
